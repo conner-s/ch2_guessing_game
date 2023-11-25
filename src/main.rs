@@ -1,15 +1,14 @@
+mod score;
 use std::{
     io,
     cmp::Ordering
 };
 use rand::Rng;
-mod score;
-use score::scoring;
 
 fn main() {
     println!("Guess the Number!");
 
-    let rand_number = rand::thread_rng().gen_range(1, 101);
+    let rand_number = rand::thread_rng().gen_range(1..=100);
 
     println!("*whisper* the random number is {}", rand_number);
 
@@ -30,7 +29,8 @@ fn main() {
         }
         guess_list.push(guess)
     }
-    let score = scoring::get_score(guess_list, rand_number);
+    println!("{:?}", guess_list);
+    let score = score::get_score(guess_list, rand_number);
 
     println!("Your score is {}", score);
 
